@@ -1,0 +1,71 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <div class="card mb-3 w-200">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    <img src="{{ post.photo.url }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5><b>Description</b></h5>
+
+                        <p class="card-text">{{ post.description }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br/><br/>
+
+    <a href="{% url 'dashboard' %}" class="btn btn-success btn-lg">Go Back</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'create review' %}" class="btn btn-primary btn-lg">Add Review</a>
+    {% endif %}
+    {% if is_owner %}
+        <a href="{% url 'edit post' post.pk %}" class="btn btn-success btn-lg">Edit</a>
+        <a href="{% url 'delete post' post.pk %}" class="btn btn-danger btn-lg">Delete</a>
+    {% endif %}
+
+    <br/>
+
+    <div class=" row d-flex justify-content-center align-content-center">
+
+    </div>
+    <br/><br/>
+
+
+    <br/><br/>
+    {% for r in post.review_set.all %}
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    {% if r.user.profile.picture %}
+                        <img style="width: 120%; height: 100%" src="{{ r.user.profile.picture.url }}">
+                    {% else %}
+                        <img style="width: 100%" src="{% static 'images/blank-profile-picture-g3e45463a7_640.png' %}">
+                    {% endif %}
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+
+                        <h5 class="card-title">{{ r.user.profile.full_name }} </h5>
+                        <p>Възраст:{{ r.user.profile.age }}</p>
+                        <p>Тип на кожата:{{ r.user.profile.skin_type }}</p>
+
+
+                        <h3 class="card-text">{{ r.title }}
+                            <a href="{% url 'review details' r.pk %}"
+                               class="btn btn-secondary">Details</a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

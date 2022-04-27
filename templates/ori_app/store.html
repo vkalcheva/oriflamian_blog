@@ -1,0 +1,27 @@
+{% extends 'base/main.html' %}
+{% block content %}
+    <div style="display: flex;margin-left: 30px">
+        <h2><b>Welcome to our store. If you want to order:</b></h2>
+        <a style="margin-left: 20px" href="{% url 'contact' %}" class="btn btn-secondary btn-lg">CONTACT US</a>
+    </div>
+    <br>
+    <div class="container" style="display: flex;flex-wrap: wrap">
+
+        {% for product in products %}
+            <div class="card" style="width: 21rem;margin: 10px">
+                <img style="width: 100%" src="{{ product.image_url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h4>{{ product.price }} лв.</h4>
+
+                    <a href="{% url 'product details' product.pk %}" class="btn btn-primary">See details</a>
+
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+
+

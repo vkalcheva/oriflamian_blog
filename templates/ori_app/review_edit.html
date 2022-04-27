@@ -1,0 +1,11 @@
+{% extends 'base/main.html' %}
+{% block content %}
+    <div>
+        <form method="post" action="{% url 'edit review' review.pk %} " enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn btn-secondary">Update</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="d-flex">
+
+                <div class="d-inline p-2 w-50">
+                    {% csrf_token %}
+                    {{ form }}
+
+                    <img src="{{ review.post.photo.url }}" class="w-50 rounded mx-auto d-block" alt="...">
+                </div>
+                <div class="d-inline p-2 w-50">
+                    <h4><b>Title:</b></h4>
+                    <h5>{{ review.title }}</h5>
+                    <h4><b>Post date:</b></h4>
+                    <h5>{{ review.post_date }}</h5>
+
+
+                </div>
+            </div>
+        </div>
+        <h4><b>Description:</b> {{ review.comment }}</h4>
+        <a href="{% url 'post details' review.post.pk %}" class="btn btn-success btn-lg">Go Back</a>
+        {% if is_owner %}
+            <a href="{% url 'edit review' review.pk %}" class="btn btn-primary btn-lg">Edit</a>
+            <a href="{% url 'delete review' review.pk %}" class="btn btn-danger btn-lg">Delete</a>
+
+        {% endif %}
+
+
+    </div>
+
+
+
+{% endblock %}

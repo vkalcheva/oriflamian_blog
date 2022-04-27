@@ -1,0 +1,11 @@
+
+{% extends 'base/main.html' %}
+{% block content %}
+    <div>
+        <form method="post" action="{% url 'edit post' post.pk %} " enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Update</button>
+        </form>
+    </div>
+{% endblock %}

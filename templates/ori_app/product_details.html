@@ -1,0 +1,28 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+    <div class="container">
+        <div class="d-flex">
+            <div class="d-inline p-2 w-50">
+
+                <img src="{{ product.image_url }}"
+                     class="w-100 rounded mx-auto d-block" alt="Photo description">
+                <a href="{% url 'store' %}" class="btn btn-success btn-lg">Go Back</a>
+
+            </div>
+
+            <div class="d-inline p-2 w-50">
+                <p class="mt-2 font-weight-bold">Name:</p>
+                <p style="font-size: x-large">{{ product.name }}</p>
+                <p class="mt-2 font-weight-bold">DESCRIPTION:</p>
+                <p>{{ product.description }}</p>
+                <p class="mt-2 font-weight-bold">Ingredients:</p>
+                <p>{{ product.ingredients }}</p>
+                <p class="mt-2 font-weight-bold">How to use:</p>
+                <p>{{ product.how_to_use }}</p>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

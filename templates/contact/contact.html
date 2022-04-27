@@ -1,0 +1,54 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+
+<form action="" method="post">
+    {% csrf_token %}
+    <tr>
+        <th>
+            <label for="id_email">Email:</label>
+        </th>
+        <td>
+            <input type="email" name="email" maxlength="254" required id="id_email">
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="id_name">Name:</label>
+        </th>
+        <td>
+            <input type="text" name="name" maxlength="255" required id="id_name">
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="id_number">Phone number:</label>
+        </th>
+        <td>
+            <input type="text" name="number" maxlength="255" required id="id_number">
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="id_address">Address:</label>
+        </th>
+        <td>
+            <textarea name="address" cols="5" rows="4" required id="id_address"></textarea>
+        </td>
+    </tr>
+
+
+    <tr>
+        <th>
+            <label for="id_order">Order or Message:</label>
+        </th>
+        <td>
+            <textarea name="order" cols="20" rows="10" required id="id_order"></textarea>
+        </td>
+    </tr>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

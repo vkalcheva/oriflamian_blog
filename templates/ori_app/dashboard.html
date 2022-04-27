@@ -1,0 +1,43 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+
+    <h1 class='text-center'>
+        {% if not posts %}
+            No posts yet
+        {% endif %}
+    </h1>
+
+    {% if posts %}
+
+        <div class="container mb-5">
+            <div class="row mb-5">
+
+                {% for post in posts %}
+                    <div class="card ml-3 mb-3" style="width: 18rem;">
+
+                        <img src="{{ post.photo.url }}"
+                             class="card-img-top" alt="Photo description">
+                        <div class="card-body">
+                            <h7><b>{{ post.title }}</b></h7>
+                            <p>{{ post.date_created }}</p>
+
+                            <a href="{% url 'post details' post.pk %}" class="btn btn-primary btn-lg">See details</a>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+
+
+    {% endif %}
+
+
+
+
+
+{% endblock %}

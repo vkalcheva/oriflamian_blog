@@ -1,0 +1,11 @@
+{% extends 'base/main.html' %}
+{% block content %}
+    <div>
+        <form method="post" action="{% url 'profile edit' user.pk %} " enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn btn-secondary">Update Profile</button>
+        </form>
+    </div>
+{% endblock %}
